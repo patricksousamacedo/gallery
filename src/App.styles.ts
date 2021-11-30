@@ -50,7 +50,7 @@ export const UploadForm = styled.form`
     margin: 0 20px;
     cursor: pointer;
 
-    &:hover { // isso também tem aqui no styled-componentes, se refere ao proprio elemento
+    &:hover { 
       opacity: .9;
     }
   }

@@ -6,7 +6,7 @@ import * as Photos from './services/photos';
 import * as C from './App.styles';
 
 const App = () => {
-  const [uploading, setUploading] = useState(false); // essa é a state para loading do uploading
+  const [uploading, setUploading] = useState(false); 
   const [loading, setLoading] = useState(false); 
   const [photos, setPhotos] = useState<Photo[]>([]); 
 
@@ -18,25 +18,25 @@ const App = () => {
     }
     getPhotos();
   }, [])
-  // função do envio da foto
-  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => { // Vamos usar essa importação do react, para tipar o evento, precisa explicar tudo isso kkk
+  
+  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => { 
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    const file = formData.get('image') as File;
+    const file = formData.get('image') as File; 
     
-    if (file && file.size > 0) {
-      setUploading(true);
-      let result = await Photos.insert(file);
-      setUploading(false);
+    if (file && file.size > 0) { 
+      setUploading(true); 
+      let result = await Photos.insert(file); 
+      setUploading(false); 
 
-      if (result instanceof Error) {
-        alert(`${result.name} - ${result.message}`);
+      if (result instanceof Error) { 
+        alert(`${result.name} - ${result.message}`); 
       
-      } else {
-        let newPhotoList = [ ...photos ];
-        newPhotoList.push(result);
-        setPhotos(newPhotoList);
+      } else { 
+        let newPhotoList = [ ...photos ]; 
+        newPhotoList.push(result); 
+        setPhotos(newPhotoList); 
       }
     }
   }
@@ -45,11 +45,11 @@ const App = () => {
     <C.Container>
       <C.Area>
         <C.Header>Galeria de Fotos</C.Header>
-        {/* vamos criar um formulário para envio da imagem */}
+        
         <C.UploadForm method="POST" onSubmit={handleFormSubmit}>
           <input type="file" name="image" />
           <input type="submit" value="Enviar" />
-          {uploading && 'Enviando...'}
+          {uploading && 'Enviando...'} 
         </C.UploadForm>
 
         {loading && 
